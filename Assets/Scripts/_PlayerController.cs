@@ -44,7 +44,7 @@ public class _PlayerController : MonoBehaviour
         if (rb.velocity == Vector3.zero)
         {
             Vector3 stopPos = transform.localPosition;
-            //Character stopped
+            //Karakteri durdurma
             stopPos.x = (int)Convert.ToInt32(stopPos.x);
             stopPos.z = (int)Convert.ToInt32(stopPos.z);
             transform.localPosition = stopPos;
