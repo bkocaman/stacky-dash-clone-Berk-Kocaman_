@@ -29,5 +29,24 @@ public class _PlayerStack : MonoBehaviour
             // Platformlarý yoketme
             Destroy(this);
         }
+
+        /* else if( other.tag == "DropPlatform")
+        {
+            // Sonra yapýlcak
+        }
+
+        */
+        else
+        {
+            other.tag = "Untagged";
+            stackManager.DropPlatform(other.gameObject, 0);
+            Destroy(this);
+        }
+
+
+
+
+
+
     }
 }
