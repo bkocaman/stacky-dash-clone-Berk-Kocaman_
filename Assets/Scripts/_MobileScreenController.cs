@@ -24,7 +24,7 @@ public class _MobileScreenController : MonoBehaviour
 
     private void Update()
     {
-        //Booleanlarý kapatýp diðer classta açýcaz
+        //Booleanlarý sýfýrlýyoruz
         tap = false;
         swipeLeft = false;
         swipeRight = false;

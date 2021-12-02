@@ -7,12 +7,13 @@ public class _PlayerStack : MonoBehaviour
 
     [SerializeField] private GameObject player;
     private _StackManager stackManager;
+    private _GameManager gameManager;
 
     private void Awake()
     {
         
         //player = this.transform.root.gameObject;
-        //stackManager = player.GetComponent<_StackManager>();
+       //stackManager = player.GetComponent<_StackManager>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,12 +36,33 @@ public class _PlayerStack : MonoBehaviour
             Destroy(this);
         }
 
-        /* else if( other.tag == "DropPlatform")
+        else if( other.tag == "DropPlatform")
         {
-            // Sonra yapýlcak
-        }
+            // Yeterli playform yoksa karakteri durdurma
 
-        */
+            /*if (gameManager.PlatformUnder == 0)
+            {
+                //Yeterli platform yoksa karakteri geri yollama
+
+                Vector3 playerVelocity = player.GetComponent<Rigidbody>().velocity;
+                playerVelocity *= 1.5f;
+                player.GetComponent<Rigidbody>().velocity -= playerVelocity;
+
+
+
+            }
+            */
+            other.tag = "Untagged";
+            //stackManager.DropPlatform(other.gameObject, 0);
+            _StackManager.instance.DropPlatform(other.gameObject,0);
+            Destroy(this);
+        }
+        
+
+
+    }
+
+        
 
        
 
@@ -49,4 +71,4 @@ public class _PlayerStack : MonoBehaviour
 
 
     }
-}
+

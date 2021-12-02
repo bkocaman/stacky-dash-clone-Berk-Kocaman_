@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class _GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    private int platformUnder = 0;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
+
+
+
+    public int PlatformUnder
+    {
+        get
+        {
+            return platformUnder;
+        }
+        set
+        {
+            platformUnder = value;
+        }
+    }
+
+
 }

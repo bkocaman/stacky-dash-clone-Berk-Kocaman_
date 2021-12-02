@@ -8,6 +8,7 @@ public class _StackManager : MonoBehaviour
     [SerializeField] Transform platformParent;
     [SerializeField] GameObject prevPlatform;
     [SerializeField] private float platformHeight = 0.050f;
+    private _GameManager gameManager;
     private _PlayerController playerController;
     public static _StackManager instance;
 
@@ -57,22 +58,29 @@ public class _StackManager : MonoBehaviour
 
     public void DropPlatform(GameObject platform, int type)
     {
-        
-        //Sýradaki platformu bulmak için indexi alýyoruz
+
+        // Sýradaki platformu bulmak için indexi alýyoruz
         int i = prevPlatform.transform.GetSiblingIndex();
         prevPlatform.transform.SetParent(platform.transform.parent);
         Vector3 pos = prevPlatform.transform.localPosition;
         prevPlatform.transform.localPosition = platform.transform.localPosition;
         Vector3 playerPos = transform.localPosition;
 
+
+
         platform.GetComponent<BoxCollider>().isTrigger = false;
+        // Bir platform düþtüðünde
+        gameManager.PlatformUnder -= 1;
+
+
 
         if (type == 0)
         {
-            // Platformu býrakan yoldan geçince
+            //DropPlatform
             playerPos.y -= platformHeight;
         }
-       
+      
+
         transform.localPosition = playerPos;
         if (platformParent.childCount != 0)
         {
@@ -80,10 +88,8 @@ public class _StackManager : MonoBehaviour
             prevPlatform.AddComponent<_PlayerStack>();
 
         }
-    }
 
-    internal void DropPlatform(GameObject gameObject)
-    {
-        throw new NotImplementedException();
+
     }
 }
+
