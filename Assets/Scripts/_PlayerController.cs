@@ -7,8 +7,19 @@ public class _PlayerController : MonoBehaviour
 {
     [SerializeField] private bool isMoving = false;
 
+    public static _PlayerController instance;
     private Rigidbody rb;
     private float speed = 1000f;
+
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = null;
+        }
+        
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -41,10 +52,11 @@ public class _PlayerController : MonoBehaviour
             }
 
         }
+        //Karakteri durdurma
         if (rb.velocity == Vector3.zero)
         {
             Vector3 stopPos = transform.localPosition;
-            //Karakteri durdurma
+            
             stopPos.x = (int)Convert.ToInt32(stopPos.x);
             stopPos.z = (int)Convert.ToInt32(stopPos.z);
             transform.localPosition = stopPos;

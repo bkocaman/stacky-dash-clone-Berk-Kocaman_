@@ -11,8 +11,8 @@ public class _PlayerStack : MonoBehaviour
     private void Awake()
     {
         
-        player = this.transform.root.gameObject;
-        stackManager = player.GetComponent<_StackManager>();
+        //player = this.transform.root.gameObject;
+        //stackManager = player.GetComponent<_StackManager>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -20,8 +20,13 @@ public class _PlayerStack : MonoBehaviour
           // Platform Trigger Enter
         if (other.tag == "Platform")
         {
+            Debug.Log("Platform stacklendi");
             other.tag = "Untagged";
-            stackManager.StackPlatform(other.gameObject);
+            _StackManager.instance.StackPlatform(other.gameObject);
+            //other.gameObject.AddComponent<Rigidbody>();
+            other.gameObject.GetComponent<Rigidbody>().useGravity = false;
+            other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            //stackManager.StackPlatform(other.gameObject);
 
             //Yeni platformlar ekleme
             other.gameObject.AddComponent<_PlayerStack>();
@@ -36,13 +41,8 @@ public class _PlayerStack : MonoBehaviour
         }
 
         */
-        else
-        {
-            other.tag = "Untagged";
-            stackManager.DropPlatform(other.gameObject, 0);
-            Destroy(this);
-        }
 
+       
 
 
 

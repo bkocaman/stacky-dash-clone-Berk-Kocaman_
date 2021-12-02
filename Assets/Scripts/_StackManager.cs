@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +9,22 @@ public class _StackManager : MonoBehaviour
     [SerializeField] GameObject prevPlatform;
     [SerializeField] private float platformHeight = 0.050f;
     private _PlayerController playerController;
+    public static _StackManager instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+
+    }
+
     void Start()
     {
         playerController = GetComponent<_PlayerController>();
 
+        //Unity içinden elimizlede atabilirdik
         platformParent = transform.GetChild(2);
         prevPlatform = platformParent.GetChild(0).gameObject;
     }
@@ -64,8 +77,13 @@ public class _StackManager : MonoBehaviour
         if (platformParent.childCount != 0)
         {
             prevPlatform = platformParent.GetChild(i - 1).gameObject;
-            prevPlatform.AddComponent<_PlayerController>();
+            prevPlatform.AddComponent<_PlayerStack>();
 
         }
+    }
+
+    internal void DropPlatform(GameObject gameObject)
+    {
+        throw new NotImplementedException();
     }
 }
