@@ -7,19 +7,11 @@ public class _PlayerController : MonoBehaviour
 {
     [SerializeField] private bool isMoving = false;
 
-    public static _PlayerController instance;
     private Rigidbody rb;
     private float speed = 1000f;
 
 
-    private void Awake()
-    {
-        if(instance == null)
-        {
-            instance = null;
-        }
-        
-    }
+    
     void Start()
     {
         rb = GetComponent<Rigidbody>();

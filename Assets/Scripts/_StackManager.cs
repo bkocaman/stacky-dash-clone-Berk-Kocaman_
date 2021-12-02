@@ -1,29 +1,20 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class _StackManager : MonoBehaviour
 {
-    [SerializeField] Transform platformParent;
-    [SerializeField] GameObject prevPlatform;
-    [SerializeField] private float platformHeight = 0.050f;
+
+    [SerializeField]Transform platformParent;
+    [SerializeField]GameObject prevPlatform;
+    [SerializeField]private float platformHeight = 0.050f;
     private _GameManager gameManager;
     private _PlayerController playerController;
-    public static _StackManager instance;
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-
-    }
 
     void Start()
     {
         playerController = GetComponent<_PlayerController>();
+        gameManager = GameObject.Find("GameManager").GetComponent<_GameManager>();
 
         //Unity içinden elimizlede atabilirdik
         platformParent = transform.GetChild(2);
@@ -32,33 +23,32 @@ public class _StackManager : MonoBehaviour
 
     void Update()
     {
-
+        
     }
-
     public void StackPlatform(GameObject Platform)
     {
-
         // Player yükseldikçe
         Vector3 playerPos = transform.localPosition;
         playerPos.y += platformHeight;
         transform.localPosition = playerPos;
+        gameManager.PlatformUnder += 1;
 
         // Platformu stackleme
         Platform.transform.SetParent(platformParent);
         Vector3 pos = prevPlatform.transform.localPosition;
         pos.y -= platformHeight;
         Platform.transform.localPosition = pos;
+        
 
-
-
-        prevPlatform.GetComponent<BoxCollider>().isTrigger = false;
         prevPlatform = Platform;
+        prevPlatform.GetComponent<BoxCollider>().isTrigger = false;
 
     }
 
     public void DropPlatform(GameObject platform, int type)
     {
-
+        
+       
         // Sýradaki platformu bulmak için indexi alýyoruz
         int i = prevPlatform.transform.GetSiblingIndex();
         prevPlatform.transform.SetParent(platform.transform.parent);
@@ -67,19 +57,16 @@ public class _StackManager : MonoBehaviour
         Vector3 playerPos = transform.localPosition;
 
 
-
         platform.GetComponent<BoxCollider>().isTrigger = false;
         // Bir platform düþtüðünde
         gameManager.PlatformUnder -= 1;
-
-
 
         if (type == 0)
         {
             //DropPlatform
             playerPos.y -= platformHeight;
         }
-      
+       
 
         transform.localPosition = playerPos;
         if (platformParent.childCount != 0)
@@ -88,8 +75,7 @@ public class _StackManager : MonoBehaviour
             prevPlatform.AddComponent<_PlayerStack>();
 
         }
-
-
+        
+        
     }
 }
-
