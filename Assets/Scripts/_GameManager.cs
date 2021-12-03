@@ -1,5 +1,6 @@
 using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class _GameManager : MonoBehaviour
 {
@@ -37,6 +38,13 @@ public class _GameManager : MonoBehaviour
             scoreText.text = score.ToString();
 
         }
+    }
+
+    public void Playbutton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        startGameUI.SetActive(false);
+        inGameUI.SetActive(true);
     }
 
 
