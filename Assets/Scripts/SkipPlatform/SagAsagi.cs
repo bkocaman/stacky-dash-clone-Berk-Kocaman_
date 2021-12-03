@@ -2,17 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SagAsagi : MonoBehaviour
+public class SagAsagi : SkipPlatform,ISkipPlatform
 {
-    // Start is called before the first frame update
-    void Start()
+    private float speed = 1000f;
+    private int TypeOfPlane = 0;
+
+
+    // Objemizi sag asagi koyduðumuz için karakteri sola ve yukarý göndermesi gerekiyor
+    public void SkipPlayer(Rigidbody player)
     {
-        
+        player.velocity = Vector3.zero;
+        if (TypeOfPlane == 0)
+        {
+            // Karakter yataydan gelirse yukarý gönderme
+            player.AddForce(Vector3.forward * speed);
+        }
+        else
+        {
+            // Karakter dikeyden gelince sola gönderme
+            player.AddForce(Vector3.left * speed);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    // Eðer playerin collideri ile triggerlanýrsa (superclasstan deðerleri çektik)
+    private void OnTriggerEnter(Collider other)
     {
-        
+
+        if (other.tag == "PlayerCollider")
+        {
+
+            TypeOfPlane = base.PlayerTrigger(other);
+            SkipPlayer(other.transform.root.GetComponent<Rigidbody>());
+
+        }
+
     }
+
 }

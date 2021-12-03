@@ -8,7 +8,7 @@ public class SagYukari : SkipPlatform, ISkipPlatform
     private int TypeOfPlane = 0;
 
 
-    // Objemizi sol sag yukarý koyduðumuz için karakteri sola ve yukarý göndermesi gerekiyor
+    // Objemizi sol sag yukarý koyduðumuz için karakteri sola ve asagi göndermesi gerekiyor
     public void SkipPlayer(Rigidbody player)
     {
         player.velocity = Vector3.zero;
