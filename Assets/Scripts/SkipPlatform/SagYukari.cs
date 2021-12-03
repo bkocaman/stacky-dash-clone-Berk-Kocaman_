@@ -1,0 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SagYukari : SkipPlatform, ISkipPlatform
+{
+    private float speed = 1000f;
+    private int TypeOfPlane = 0;
+
+
+    // Objemizi sol sag yukarý koyduðumuz için karakteri sola ve yukarý göndermesi gerekiyor
+    public void SkipPlayer(Rigidbody player)
+    {
+        player.velocity = Vector3.zero;
+        if (TypeOfPlane == 0)
+        {
+            // Karakter yataydan gelirse yukarý gönderme
+            player.AddForce(Vector3.back * speed);
+        }
+        else
+        {
+            // Karakter dikeyden gelince sola gönderme
+            player.AddForce(Vector3.left * speed);
+        }
+    }
+
+
+    // Eðer playerin collideri ile triggerlanýrsa (superclasstan deðerleri çektik)
+    private void OnTriggerEnter(Collider other)
+    {
+       
+        if (other.tag == "PlayerCollider")
+        {
+
+            TypeOfPlane = base.PlayerTrigger(other);
+            SkipPlayer(other.transform.root.GetComponent<Rigidbody>());
+
+        }
+
+    }
+
+}
