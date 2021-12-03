@@ -43,6 +43,9 @@ public class _StackManager : MonoBehaviour
         prevPlatform = Platform;
         prevPlatform.GetComponent<BoxCollider>().isTrigger = false;
 
+        // Score ve platformunder tanýmladýk
+        gameManager.Score += 1;
+        gameManager.PlatformUnder += 1;
     }
 
     public void DropPlatform(GameObject platform, int type)
@@ -76,6 +79,7 @@ public class _StackManager : MonoBehaviour
 
         }
         
-        
+
+
     }
 }
