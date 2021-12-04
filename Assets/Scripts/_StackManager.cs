@@ -69,7 +69,13 @@ public class _StackManager : MonoBehaviour
             //DropPlatform
             playerPos.y -= platformHeight;
         }
-       
+
+        // FinishGame platformda puan kazanmaya devam eder
+        if (playerController.EndGamePoint)
+        {
+            gameManager.Score += 1;
+        }
+
 
         transform.localPosition = playerPos;
         if (platformParent.childCount != 0)
