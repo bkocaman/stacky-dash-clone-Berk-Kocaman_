@@ -31,7 +31,7 @@ public class _StackManager : MonoBehaviour
         Vector3 playerPos = transform.localPosition;
         playerPos.y += platformHeight;
         transform.localPosition = playerPos;
-        gameManager.PlatformUnder += 1;
+        
 
         // Platformu stackleme
         Platform.transform.SetParent(platformParent);

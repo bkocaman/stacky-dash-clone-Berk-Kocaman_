@@ -37,7 +37,7 @@ public class _PlayerStack : MonoBehaviour
         else if (other.tag == "DropPlatform")
         {
             
-            if (gameManager.PlatformUnder ==0)
+            if (gameManager.PlatformUnder == 0)
             {
                 //Yeterli platform yoksa karakteri geri yollama
 

@@ -75,8 +75,7 @@ public class _PlayerController : MonoBehaviour
                 rb.velocity = Vector3.zero;
                 GameFinished = true;
 
-                int roundedUp = (int)Mathf.Ceil(endPlatform / 5f);
-                float multiply = 1 + ((roundedUp - 1) / 10f);
+               
             }
         }
 

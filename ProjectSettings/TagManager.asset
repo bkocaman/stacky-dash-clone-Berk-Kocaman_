@@ -10,6 +10,7 @@ TagManager:
   - Parent
   - DropPlatform
   - FinishGame
+  - EndGamePoint
   layers:
   - Default
   - TransparentFX
