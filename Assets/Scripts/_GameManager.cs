@@ -14,6 +14,9 @@ public class _GameManager : MonoBehaviour
     private int score = 0;
     public int endScore = 0;
 
+    public bool endgame = false;
+    public bool Ispaused = true;
+
     public int PlatformUnder
     {
         get
@@ -42,10 +45,45 @@ public class _GameManager : MonoBehaviour
 
     public void Playbutton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
         startGameUI.SetActive(false);
-        inGameUI.SetActive(true);
+        Ispaused = false;
     }
+
+    void Start()
+    {
+        startGameUI.SetActive(true);
+        inGameUI.SetActive(false);
+        endUI.SetActive(false);
+    }
+    void Update()
+    {
+        
+
+        if (endgame == true)
+        {
+            endUI.SetActive(true);
+        }
+
+        else
+        {
+            endUI.SetActive(false);
+        }
+
+        if (Ispaused == true)
+        {
+            Time.timeScale = 0;
+            Time.fixedDeltaTime = 0;
+
+        }
+        else
+        {
+            Time.timeScale = 1;
+            Time.fixedDeltaTime = 0.02f;
+        }
+
+    }
+
 
 
 }
