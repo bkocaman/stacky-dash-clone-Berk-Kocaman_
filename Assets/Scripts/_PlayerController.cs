@@ -6,15 +6,22 @@ using UnityEngine;
 public class _PlayerController : MonoBehaviour
 {
     [SerializeField] private bool isMoving = false;
+    [SerializeField] public bool EndGamePoint = false;
+    [SerializeField] public bool GameFinished = false;
+    private _GameManager gameManager;
 
     private Rigidbody rb;
     private float speed = 1000f;
+    private Animator animator;
 
+    int endPlatform = 0;
 
     
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<_GameManager>();
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
  
@@ -58,6 +65,39 @@ public class _PlayerController : MonoBehaviour
         {
             isMoving = true;
         }
+
+
+        if (EndGamePoint)
+        {
+            if (gameManager.PlatformUnder == 0 && !GameFinished)
+            {
+              //Oyunu bitirme
+                rb.velocity = Vector3.zero;
+                GameFinished = true;
+            }
+        }
+
+
+
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "FinishGame")
+        {
+            // Son noktaya gelince karakteri durdurup animasyonu oynatma
+            rb.velocity = Vector3.zero;
+            
+
+        }
+        else if (other.tag == "EndGamePoint")
+        {
+            endPlatform = gameManager.PlatformUnder;
+            EndGamePoint = true;
+        }
+        
+
+    }
+
 }
 

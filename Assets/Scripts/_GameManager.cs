@@ -47,6 +47,7 @@ public class _GameManager : MonoBehaviour
     {
         
         startGameUI.SetActive(false);
+        inGameUI.SetActive(true);
         Ispaused = false;
     }
 
@@ -83,6 +84,8 @@ public class _GameManager : MonoBehaviour
         }
 
     }
+
+
 
 
 
