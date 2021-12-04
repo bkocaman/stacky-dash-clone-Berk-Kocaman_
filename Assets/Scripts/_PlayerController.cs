@@ -87,7 +87,7 @@ public class _PlayerController : MonoBehaviour
         {
             // Son noktaya gelince karakteri durdurup animasyonu oynatma
             rb.velocity = Vector3.zero;
-            
+            gameManager.endGameMethod();
 
         }
         else if (other.tag == "EndGamePoint")

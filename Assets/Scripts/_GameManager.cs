@@ -9,6 +9,8 @@ public class _GameManager : MonoBehaviour
     public GameObject inGameUI;
     public GameObject startGameUI;
     public Text scoreText;
+    public Text endScoreText;
+    public Text levelCompletedText;
 
     private int platformUnder = 0;
     private int score = 0;
@@ -43,16 +45,9 @@ public class _GameManager : MonoBehaviour
         }
     }
 
-    public void Playbutton()
-    {
-        
-        startGameUI.SetActive(false);
-        inGameUI.SetActive(true);
-        Ispaused = false;
-    }
-
     void Start()
     {
+
         startGameUI.SetActive(true);
         inGameUI.SetActive(false);
         endUI.SetActive(false);
@@ -83,7 +78,34 @@ public class _GameManager : MonoBehaviour
             Time.fixedDeltaTime = 0.02f;
         }
 
+        
     }
+
+
+    public void endGameMethod()
+    {
+        endgame = true;
+        inGameUI.SetActive(false);
+        endUI.SetActive(true);
+        endScoreText.text = scoreText.text.ToString(); // Oyun sonunda skoru bastýrma
+        levelCompletedText.text = "Level " + (SceneManager.GetActiveScene().buildIndex + 1).ToString() + " Completed";
+    }
+
+    public void Playbutton()
+    {
+
+        startGameUI.SetActive(false);
+        inGameUI.SetActive(true);
+        Ispaused = false;
+    }
+
+    public void NextLevelButton()
+    {SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+    }
+
+
+
 
 
 
