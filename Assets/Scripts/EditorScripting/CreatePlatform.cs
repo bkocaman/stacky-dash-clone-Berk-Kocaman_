@@ -3,6 +3,20 @@ using UnityEngine;
 
 public class DashEditor : EditorWindow
 {
+    /*   
+    [***** SAÐA DOGRU *****]
+    X: 1 , Z:0
+
+    [*****SOLA DOGRU  *****]
+    X:-1 , Z:0
+
+    [*****YUKARI DOGRU *****]
+    X:0 , Z:1
+
+    [*****AÞAÐI DOGRU *****]
+    X:0 , Z:-1
+    */
+
     float zValue;
     float xValue;
     int count = 5;
