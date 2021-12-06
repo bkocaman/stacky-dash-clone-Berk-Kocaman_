@@ -11,7 +11,7 @@ public class _PlayerController : MonoBehaviour
     private _GameManager gameManager;
 
     private Rigidbody rb;
-    private float speed = 850f;
+    private float speed = 1200f;
     private Animator animator;
 
     int endPlatform = 0;
@@ -69,11 +69,13 @@ public class _PlayerController : MonoBehaviour
 
         if (EndGamePoint)
         {
-            if (gameManager.PlatformUnder == 0 && !GameFinished)
+            if (gameManager.PlatformUnder == 0 )
             {
               //Oyunu bitirme
                 rb.velocity = Vector3.zero;
-                GameFinished = true;
+           
+                gameManager.endGameMethod();
+                
 
                
             }
@@ -90,6 +92,7 @@ public class _PlayerController : MonoBehaviour
             // Son noktaya gelince karakteri durdurup animasyonu oynatma
             rb.velocity = Vector3.zero;
             gameManager.endGameMethod();
+            // animator.Play();
             
 
         }
