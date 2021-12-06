@@ -100,7 +100,12 @@ public class _GameManager : MonoBehaviour
     }
 
     public void NextLevelButton()
-    {SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    {
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        if (SceneManager.sceneCountInBuildSettings > nextSceneIndex)
+        {
+            SceneManager.LoadScene(nextSceneIndex);
+        }
 
     }
 
