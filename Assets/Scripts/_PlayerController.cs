@@ -11,7 +11,7 @@ public class _PlayerController : MonoBehaviour
     private _GameManager gameManager;
 
     private Rigidbody rb;
-    private float speed = 1000f;
+    private float speed = 850f;
     private Animator animator;
 
     int endPlatform = 0;
