@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SolAsagi : SkipPlatform, ISkipPlatform
 {
-    private float speed = 1100f;
+    private float speed = 1000f;
     private int TypeOfPlane = 0;
 
     // Objemizi sol asagi koyduðumuz için karakteri saga ve yukarý göndermesi gerekiyor

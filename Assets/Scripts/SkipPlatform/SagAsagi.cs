@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SagAsagi : SkipPlatform,ISkipPlatform
 {
-    private float speed = 1100f;
+    private float speed = 1000f;
     private int TypeOfPlane = 0;
 
 
